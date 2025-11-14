@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from config import settings
 from database import get_db_connection, close_db_connection
-from routers import auth, students, departments, courses, enrollments, grades
+from routers import auth, students, departments, courses, enrollments, grades, collegeid
 import hashlib
 
 app = FastAPI(title=settings.API_TITLE, version=settings.API_VERSION)
@@ -23,6 +23,7 @@ app.include_router(departments.router)
 app.include_router(courses.router)
 app.include_router(enrollments.router)
 app.include_router(grades.router)
+app.include_router(collegeid.router)
 
 @app.on_event("startup")
 async def startup_event():

@@ -16,6 +16,7 @@ class StudentCreate(BaseModel):
     phone: Optional[str] = None
     dept_id: str
     password: str
+    college_id_number: str  # Now admin provides this
 
 class StudentUpdate(BaseModel):
     first_name: Optional[str] = None
@@ -48,9 +49,24 @@ class GradeCreate(BaseModel):
     marks: float
     grade_letter: str
 
+class GradeUpdate(BaseModel):
+    marks: float
+    grade_letter: str
+
 class AddressCreate(BaseModel):
-    student_id: str
     street: str
     city: str
     state: str
     zip_code: str
+
+class AddressUpdate(BaseModel):
+    street: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    zip_code: Optional[str] = None
+
+class CollegeIDCreate(BaseModel):
+    college_id_number: str
+    issue_date: str
+    expiry_date: str
+    status: str = "Active"

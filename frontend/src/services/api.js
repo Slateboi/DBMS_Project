@@ -19,6 +19,12 @@ export const studentAPI = {
   create: (data) => api.post('/students', data),
   update: (id, data) => api.put(`/students/${id}`, data),
   delete: (id) => api.delete(`/students/${id}`),
+  uploadPhoto: (id, formData) => axios.post(`${API_URL}/students/${id}/photo`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  }),
+  getPhoto: (id) => api.get(`/students/${id}/photo`),
+  createAddress: (id, data) => api.post(`/students/${id}/address`, data),
+  updateAddress: (id, data) => api.put(`/students/${id}/address`, data),
 };
 
 export const departmentAPI = {
@@ -41,9 +47,20 @@ export const enrollmentAPI = {
 
 export const gradeAPI = {
   getByStudent: (id) => api.get(`/grades/${id}`),
+  getAll: () => api.get('/grades'),
+  getByCourse: (courseId) => api.get(`/grades/course/${courseId}`),
   create: (data) => api.post('/grades', data),
   update: (studentId, courseId, semesterNo, data) => 
     api.put(`/grades/${studentId}/${courseId}/${semesterNo}`, data),
+  delete: (studentId, courseId, semesterNo) => 
+    api.delete(`/grades/${studentId}/${courseId}/${semesterNo}`),
+};
+
+export const collegeIDAPI = {
+  getAll: () => api.get('/college-ids'),
+  getOne: (id) => api.get(`/college-ids/${id}`),
+  create: (data) => api.post('/college-ids', data),
+  delete: (id) => api.delete(`/college-ids/${id}`),
 };
 
 export default api;
